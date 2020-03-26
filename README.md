@@ -1,4 +1,2 @@
-## Hello.
-### This is React slider project.
-
-Thank you
+# Hello.
+# This is React slider project.

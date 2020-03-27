@@ -1,21 +1,20 @@
-import React, { Component } from 'react';
-import debounce from 'lodash/debounce';
+import React, { Component } from "react";
+import debounce from "lodash/debounce";
 
-import Navigation from './containers/Navigation';
-import Slider from './containers/Slider';
-import images from './assets/data';
+import Navigation from "./containers/Navigation";
+import Slider from "./containers/Slider";
+import images from "./assets/data";
 
-import './index.scss';
+import "./index.scss";
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.goToNextSlide = this.nextSlide.bind(this);
-    this.goToPreviousSlide = this.prevSlide.bind(this);
+
     this.dataLength = images.length;
 
     this.state = {
-      enteredText: '',
+      enteredText: "",
       windowWidth: 0,
       index: 5,
       left: 0,
@@ -27,35 +26,45 @@ class App extends Component {
 
   componentDidMount() {
     this.setState({ windowWidth: window.innerWidth });
-    window.addEventListener('resize', this.debounceHandleWindowResize);
+    window.addEventListener("resize", this.debounceHandleWindowResize);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.debounceHandleWindowResize);
+    window.removeEventListener("resize", this.debounceHandleWindowResize);
   }
 
   debounceHandleWindowResize = debounce(() => {
     this.setState({ windowWidth: window.innerWidth });
   }, 100);
 
-  onEnterPressed = event => {
-    let newIndex = +this.state.enteredText;
-    if (event.keyCode === 13) {
-      if (isNaN(newIndex)) {
-        this.setState({
-          enteredText: ''
-        });
-        return;
-      }
+  validateUserInput() {
+    const newIndex = +this.state.enteredText;
 
-      if (newIndex < 1 || newIndex > this.dataLength) {
-        this.setState({
-          enteredText: ''
-        });
-        return;
-      }
-      this.setState({ index: newIndex - 1 });
+    if (isNaN(newIndex)) {
+      this.setState({
+        enteredText: ""
+      });
+      return;
     }
+
+    if (newIndex < 1 || newIndex > this.dataLength) {
+      this.setState({
+        enteredText: ""
+      });
+      return;
+    }
+    this.setState({ index: newIndex - 1 });
+  }
+
+  onEnterPressed = event => {
+    // let newIndex = +this.state.enteredText;
+    if (event.keyCode === 13) {
+      this.validateUserInput();
+    }
+  };
+
+  onGoButtonClick = () => {
+    this.validateUserInput();
   };
 
   inputChangeHandler = event => {
@@ -65,23 +74,6 @@ class App extends Component {
         enteredText: textValue
       });
     }
-  };
-
-  onGoButtonClick = () => {
-    let newIndex = +this.state.enteredText;
-    if (isNaN(newIndex)) {
-      this.setState({
-        enteredText: ''
-      });
-      return;
-    }
-
-    if (newIndex < 1 || newIndex > this.dataLength) {
-      return;
-    }
-    this.setState({
-      index: newIndex - 1
-    });
   };
 
   nextSlide = () => {
@@ -160,12 +152,14 @@ class App extends Component {
     if (this.state.windowWidth > 600) {
       navigationPanel = (
         <Navigation
-          onClickPrevious={this.goToPreviousSlide}
-          onClickNext={this.goToNextSlide}
+          onClickPrevious={this.prevSlide}
+          // onClickNext={this.goToNextSlide}
+          // onClickNext={this.nextSlide}
+          onClickNext={this.nextSlide}
           onTextEntered={event => this.inputChangeHandler(event)}
           inputText={this.state.enteredText}
           onGoClick={() => this.onGoButtonClick()}
-          disabled={this.state.enteredText.trim() === ''}
+          disabled={this.state.enteredText.trim() === ""}
           index={this.state.index}
           onKeyPressed={this.onEnterPressed}
         />

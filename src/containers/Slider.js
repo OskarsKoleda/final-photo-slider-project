@@ -1,9 +1,9 @@
 import React from "react";
 
 import Picture from "../components/Picture";
-import images from "../assets/data/data";
+import images from "../assets/data";
 
-const Slider = React.memo(props => {
+const Slider = props => {
   const imagesLength = images.length;
   return (
     <div className="photo-slider">
@@ -34,6 +34,6 @@ const Slider = React.memo(props => {
       </div>
     </div>
   );
-});
+};
 
 export default Slider;

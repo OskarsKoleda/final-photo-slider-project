@@ -3,7 +3,7 @@ import debounce from 'lodash/debounce';
 
 import Navigation from './containers/Navigation';
 import Slider from './containers/Slider';
-import images from './assets/data/data';
+import images from './assets/data';
 
 import './index.scss';
 
@@ -37,6 +37,26 @@ class App extends Component {
   debounceHandleWindowResize = debounce(() => {
     this.setState({ windowWidth: window.innerWidth });
   }, 100);
+
+  onEnterPressed = event => {
+    let newIndex = +this.state.enteredText;
+    if (event.keyCode === 13) {
+      if (isNaN(newIndex)) {
+        this.setState({
+          enteredText: ''
+        });
+        return;
+      }
+
+      if (newIndex < 1 || newIndex > this.dataLength) {
+        this.setState({
+          enteredText: ''
+        });
+        return;
+      }
+      this.setState({ index: newIndex - 1 });
+    }
+  };
 
   inputChangeHandler = event => {
     const textValue = event.target.value;
@@ -136,7 +156,6 @@ class App extends Component {
   };
 
   render() {
-    // console.log("RENDER");
     let navigationPanel = null;
     if (this.state.windowWidth > 600) {
       navigationPanel = (
@@ -148,6 +167,7 @@ class App extends Component {
           onGoClick={() => this.onGoButtonClick()}
           disabled={this.state.enteredText.trim() === ''}
           index={this.state.index}
+          onKeyPressed={this.onEnterPressed}
         />
       );
     }

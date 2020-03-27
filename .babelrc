@@ -1,0 +1,19 @@
+// how the babel behaves with certain files
+{
+  "presets": [
+    [
+      // next-gen js features compiled to old-gen
+      "@babel/preset-env",
+      {
+        "targets": {
+          "browsers": ["> 1%", "last 2 versions"]
+        }
+      }
+    ],
+    // understand JSX
+    "@babel/preset-react"
+  ],
+
+  // support js syntax that is in proposal stage and is not supported yet
+  "plugins": ["@babel/plugin-proposal-class-properties"]
+}

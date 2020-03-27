@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '../components/Button';
 
-const Navigation = React.memo(props => {
+const Navigation = props => {
   return (
     <div className="nav">
       <div className="nav-container">
@@ -15,6 +15,7 @@ const Navigation = React.memo(props => {
         <input
           type="text"
           onChange={event => props.onTextEntered(event)}
+          onKeyDown={event => props.onKeyPressed(event)}
           value={props.inputText}
           placeholder="#"
         />
@@ -24,6 +25,6 @@ const Navigation = React.memo(props => {
       </div>
     </div>
   );
-});
+};
 
 export default Navigation;

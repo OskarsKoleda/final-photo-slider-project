@@ -4,7 +4,7 @@ React.js photo slider project. The application was developed for the assignment.
 
 ## Getting Started
 
-Follow the instructions to run this project on your local machine
+Follow the instructions to run this project on your local machine.
 
 ### Prerequisites
 

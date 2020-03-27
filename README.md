@@ -19,13 +19,13 @@ After Node.js is installed:
 1. Clone the Git repository to your local machine
 2. Navigate to project folder final-photo-slider-project
 3. Open Command Prompt
-3. Run npm install command in order to install all the necessary project dependencies. 
-    Wait untill installation is completed
-4. Run npm start command
-5. Open http://localhost:8080/ in the browser
+4. Run npm install command in order to install all the necessary project dependencies. 
+5. Wait untill installation is completed
+6. Run npm start command
+7. Open http://localhost:8080/ in the browser
 ```
 
 ### Deployment Build
 
-To create deployment project build, run **npm run build:prod** command.
-The build ready for deployment will be located in the *dist* folder.
+To create project build for deployment, run **npm run build:prod** command.
+The build will be located in the *final-photo-slider-project/dist* folder.

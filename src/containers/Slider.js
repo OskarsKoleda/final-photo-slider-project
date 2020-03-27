@@ -46,7 +46,6 @@ class Slider extends Component {
       });
       return;
     }
-
     if (newIndex < 1 || newIndex > this.dataLength) {
       this.setState({
         enteredText: ""
@@ -57,7 +56,6 @@ class Slider extends Component {
   }
 
   onEnterPressed = event => {
-    // let newIndex = +this.state.enteredText;
     if (event.keyCode === 13) {
       this.validateUserInput();
     }

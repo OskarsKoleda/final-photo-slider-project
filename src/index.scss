@@ -25,7 +25,7 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: "Sen", sans-serif;
+  font-family: 'Sen', sans-serif;
 }
 
 *,
@@ -52,6 +52,11 @@ html {
   align-items: flex-end;
   justify-content: center;
 
+  @include respond(phone) {
+    height: 15vh;
+    align-items: center;
+  }
+
   h1 {
     font-size: 4.5rem;
     color: var(--color-dark);
@@ -59,10 +64,6 @@ html {
     @include respond(phone) {
       font-size: 3.5rem;
     }
-  }
-
-  @include respond(phone) {
-    height: 20vh;
   }
 }
 
@@ -87,7 +88,7 @@ html {
   margin: 0 auto;
 
   @include respond(phone) {
-    height: 80vh;
+    height: 85vh;
   }
 }
 
@@ -146,7 +147,7 @@ html {
       cursor: auto;
 
       &::after {
-        content: "";
+        content: '';
         position: absolute;
         left: 0;
         top: 0;
